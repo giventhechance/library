@@ -1,0 +1,15 @@
+{% extends 'books/main_page.html' %}
+
+{% block title %}
+    Добавить книгу
+{% endblock %}
+
+{% block content %}
+    <div style="border: 1px solid black; width: 90%; padding: 5px;">
+    <form action="" method="POST">
+    {% csrf_token %}
+    {{ new_book.as_p }}
+    <button>Добавить</button>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'books/main_page.html' %}
+
+{% block title %}
+    Все книги
+{% endblock %}
+
+{% block content %}
+    {% for book in books %}
+        <a href="{% url 'books:book_detail' book.pk %}" style="text-decoration: none; color: black;">
+            <div style="border: 1px solid black; width: 250px; height: 250px;">
+                <p><b>Название: </b>{{ book.ru_title }}</p>
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}
