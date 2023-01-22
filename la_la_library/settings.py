@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-e6(p3(g$2(i1vtu@yfhmkm2f^na#xq0z$i2d#z=*u613ai=%r1
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'giventhechance.pythonanywhere.com'
+    'giventhechance.pythonanywhere.com',
+    '127.0.0.1',
 ]
 
 
