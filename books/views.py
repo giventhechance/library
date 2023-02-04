@@ -18,6 +18,7 @@ def all_books(request):
         'books': books
     }
     return render(request, 'books/all_books.html', context)
+
 def book_detail(request, pk):
     book = Book.objects.get(pk=pk)
 
