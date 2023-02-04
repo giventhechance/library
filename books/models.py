@@ -13,6 +13,8 @@ class Book(models.Model):
     genre = models.ManyToManyField('Genre', verbose_name='Жанры')
     author = models.ManyToManyField('Author', verbose_name='Автор(ы)')
 
+    qty = models.IntegerField('Количество', default=1)
+
     def __str__(self):
         return self.ru_title
 

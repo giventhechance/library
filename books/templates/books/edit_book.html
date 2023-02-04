@@ -1,0 +1,12 @@
+{% extends 'books/main_page.html' %}
+
+{% block title %}
+    Редактировать книгу
+{% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+    {% csrf_token %}
+    {{ edited_book.as_p }}
+    </form>
+{% endblock %}

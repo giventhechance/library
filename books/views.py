@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 
 from books.forms import BookModelForm
 from books.models import Book, Author
@@ -17,10 +17,10 @@ def all_books(request):
     context = {
         'books': books
     }
-    return render(request, 'books/all_books.html', context)
+    return render(request, 'books/book_list.html', context)
 
 def book_detail(request, pk):
-    book = Book.objects.get(pk=pk)
+    book = get_object_or_404(Book, pk=pk)
 
     context = {
         'book': book
@@ -34,6 +34,7 @@ def add_book(request):
         new_book = BookModelForm(request.POST)
         if new_book.is_valid():
             new_book.save()
+            return redirect('books:all_books')
 
         else:
             print('Хаха лох')
@@ -42,3 +43,21 @@ def add_book(request):
         'new_book': new_book
     }
     return render(request, 'books/add_book.html', context)
+
+def edit_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    edited_book = BookModelForm(instance=book)
+    if request.method == 'POST':
+        edited_book = BookModelForm(instance=book)
+
+        context = {
+            'edited_book': edited_book
+        }
+        return render(request, 'books/edit_book.html', context)
+
+    else:
+        context = {
+            'edited_book': edited_book
+        }
+        return render(request, 'books/edit_book.html', context)
+

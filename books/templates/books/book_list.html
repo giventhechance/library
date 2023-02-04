@@ -1,0 +1,31 @@
+{% extends 'books/main_page.html' %}
+
+{% block title %}
+    Список книг
+{% endblock %}
+
+{% block content %}
+    <table style="border: 1px solid black">
+        <tr>
+            <td>Название</td>
+            <td>Жанр</td>
+            <td>Год выпуска</td>
+            <td>Общее количество</td>
+            <td>Доступно</td>
+            <td></td>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.ru_title }}</td>
+                <td>{{ book.genre.name }}</td>
+                <td>{{ book.year }}</td>
+                <td></td>
+                <td></td>
+                <td><a href="{% url 'books:edit_book' book.id %}">Редактировать</a></td>
+
+            </tr>
+        {% endfor %}
+
+
+    </table>
+{% endblock %}
