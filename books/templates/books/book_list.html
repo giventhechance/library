@@ -20,7 +20,7 @@
                 <td>{{ book.genre.name }}</td>
                 <td>{{ book.year }}</td>
                 <td></td>
-                <td></td>
+                <td>{{ book.qty }}</td>
                 <td><a href="{% url 'books:edit_book' book.id %}">Редактировать</a></td>
 
             </tr>

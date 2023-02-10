@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <form action="" method="POST">
+    <form action="{% url 'books:edit_book' book.id %}" method="POST">
     {% csrf_token %}
     {{ edited_book.as_p }}
+    <button>Сохранить</button>
     </form>
 {% endblock %}

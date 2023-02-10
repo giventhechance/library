@@ -46,18 +46,20 @@ def add_book(request):
 
 def edit_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    edited_book = BookModelForm(instance=book)
     if request.method == 'POST':
-        edited_book = BookModelForm(instance=book)
+        edited_book = BookModelForm(request.POST, instance=book)
+        if edited_book.is_valid():
+            edited_book.save()
 
-        context = {
-            'edited_book': edited_book
-        }
-        return render(request, 'books/edit_book.html', context)
+            return redirect('books:all_books')
+        else:
+            return HttpResponse('о Боже ошибка!')
 
     else:
+        edited_book = BookModelForm(instance=book)
         context = {
+            'book': book,
             'edited_book': edited_book
         }
-        return render(request, 'books/edit_book.html', context)
+    return render(request, 'books/edit_book.html', context)
 

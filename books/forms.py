@@ -15,5 +15,6 @@ class BookModelForm(ModelForm):
             'year',
             'pages',
             'genre',
-            'author'
+            'author',
+            'qty',
         ]
