@@ -1,0 +1,26 @@
+{% extends 'books/main_page.html' %}
+
+{% block title %}
+    ЧИТАТЕЛИ
+{% endblock %}
+
+{% block content %}
+    <table style="border: 1px solid black">
+        <tr>
+            <td>Фамилия</td>
+            <td>Имя</td>
+            <td>Дата рождения</td>
+            <td>Адрес</td>
+            <td>E-mail</td>
+        </tr>
+        {% for reader in readers %}
+            <tr>
+                <td>{{ reader.surname }}</td>
+                <td>{{ reader.name }}</td>
+                <td>{{ reader.birth_date }}</td>
+                <td>{{ reader.address }}</td>
+                <td>{{ reader.email }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

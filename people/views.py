@@ -1,3 +1,14 @@
 from django.shortcuts import render
 
-# Create your views here.
+from people.models import Reader
+
+
+def readers_list(request):
+    readers = Reader.objects.all()
+    context = {
+        'readers': readers
+    }
+
+    return render(request, 'people/readers_list.html', context)
+
+
