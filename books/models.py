@@ -25,9 +25,8 @@ class Genre(models.Model):
         return self.name
 
 class Author(models.Model):
-    name = models.CharField('Имя', max_length=128)
-    surname = models.CharField('Фамилия', max_length=128)
+    name = models.CharField('Имя и фамилия', max_length=128)
     image = models.ImageField('media/authors')
 
     def __str__(self):
-        return f'{self.name} {self.surname}'
+        return f'{self.name}'

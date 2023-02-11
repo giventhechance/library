@@ -1,7 +1,7 @@
 {% extends 'books/main_page.html' %}
 
 {% block title %}
-{{ book.ru_title }}
+    {{ book.ru_title }}
 {% endblock %}
 
 {% block content %}
@@ -9,19 +9,19 @@
         <p><b>Название: </b>{{ book.ru_title }}</p>
 
         <p><b>Автор(ы): </b>
-            {% for a in book.author.all %}
-                {{ a.name }} {{ a.surname }}
-            {% endfor %}
+{#            {% for author in book.author.all %}#}
+                {{ book.author.all |join:", " }}
+{#            {% endfor %}#}
         </p>
 
         <p><b>Цена: </b>{{ book.price }}</p>
         <p><b>Год издания: </b>{{ book.year }}</p>
         <p><b>Страниц: </b>{{ book.pages }}</p>
         <p><b>Жанр: </b>
-            {% for g in book.genre.all %}
-                {{ g.name }},
-            {% endfor %}
+{#            {% for g in  %}#}
+                {{ book.genre.all|join:", " }}
+{#            {% endfor %}#}
         </p>
-
+<button><a href="{% url 'books:edit_book' book.id %}">Редактировать</a></button>
     </div>
 {% endblock %}
