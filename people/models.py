@@ -9,5 +9,7 @@ class Reader(models.Model):
     email = models.EmailField('E-mail', unique=True)
     address = models.CharField('Адрес', max_length=256)
 
+    books_qty_in_possession = models.IntegerField('Держит книг', default=0)
+
     def __str__(self):
         return f'{self.name} {self.surname}'

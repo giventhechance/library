@@ -1,9 +1,10 @@
-from django.forms import ModelForm
+from django import forms
 
 from books.models import Book
+from people.models import Reader
 
 
-class BookModelForm(ModelForm):
+class BookModelForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = [
@@ -18,3 +19,8 @@ class BookModelForm(ModelForm):
             'author',
             'qty',
         ]
+
+
+class BookGiveOut(forms.Form):
+    book = forms.ModelChoiceField(label='Книга', queryset=Book.objects.all())
+    reader = forms.ModelChoiceField(label='Читатель', queryset=Reader.objects.all())

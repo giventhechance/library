@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
-from books.forms import BookModelForm
+from books.forms import BookModelForm, BookGiveOut
 from books.models import Book, Author
 
 
@@ -36,7 +36,7 @@ def all_books_sorted(request):
     # books = Book.objects.all().order_by('ru_title')
     #
     # return render(request, 'books/book_list.html', {'books': books})
-        # return HttpResponse('IT FUCKING WORKS! HOW LONG DOES IT TAKE TO MAKE A FUCKING BUTTON WORK! FUCK!!!')
+    # return HttpResponse('IT FUCKING WORKS! HOW LONG DOES IT TAKE TO MAKE A FUCKING BUTTON WORK! FUCK!!!')
 
     # return HttpResponse('nope')
 
@@ -88,4 +88,22 @@ def edit_book(request, pk):
             'edited_book': edited_book
         }
     return render(request, 'books/edit_book.html', context)
+
+def give_out_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    giveout_form = BookGiveOut()
+
+    if request.method == 'POST':
+        book = request.POST.get('book')
+        reader = request.POST.get('reader')
+        print(book, reader)
+
+    context = {
+        'book': book,
+        'giveout_form': giveout_form
+    }
+    return render(request, 'books/book_giveout.html', context)
+
+
+
 

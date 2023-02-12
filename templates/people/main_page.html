@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Библиотека :: {% block title %}Чиабатта{% endblock %}</title>
+</head>
+
+{% block nav %}
+    <div style="height: 50px; width: 90%; border: 1px solid black; margin-bottom: 10px; padding: 5px;">
+        <li style="display: flex; ">
+            <ul><a href="{% url 'people:main_page' %}" style="text-decoration: none">Главная</a></ul>
+            <ul><a href="{% url 'people:readers_list' %}" style="text-decoration: none">Все читатели</a></ul>
+            <ul><a href="{% url 'people:add_reader' %}" style="text-decoration: none">Добавить книгу</a></ul>
+            <ul><a href="{% url 'books:main_page' %}" style="text-decoration: none">КНИГИ</a></ul>
+        </li>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    <body>
+    <div class="textdiv">
+        <p>Всем привет на ЕЩЁ ОДНОЙ главной странице нашей библиотеки!</p>
+        <p>Там было про книги, а тут про читателей!</p>
+    </div>
+    </body>
+{% endblock %}
+</html>

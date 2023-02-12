@@ -14,7 +14,7 @@ class Book(models.Model):
     author = models.ManyToManyField('Author', verbose_name='Автор(ы)')
 
     qty = models.IntegerField('Количество', default=1)
-
+    qty_available = models.IntegerField('Доступное количество', default=1)
     def __str__(self):
         return self.ru_title
 

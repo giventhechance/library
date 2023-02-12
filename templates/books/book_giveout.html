@@ -1,0 +1,14 @@
+{% extends 'books/main_page.html' %}
+
+{% block title %}
+    Выдача книги
+{% endblock %}
+
+{% block content %}
+    <p>Ну что сейчас будем выдавать вам {{ book }}. Вы волнуетесь? Я волнуюсь</p>
+    <form action="" method="POST">
+    {% csrf_token %}
+    {{ giveout_form.as_p }}
+    <button>OK</button>
+    </form>
+{% endblock %}
