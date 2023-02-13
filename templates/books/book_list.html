@@ -27,7 +27,7 @@
                 {#                    {% endfor %}#}
                 <td>{{ book.year }}</td>
                 <td>{{ book.qty }}</td>
-                <td></td>
+                <td>{{ book.qty_available }}</td>
                 <td><a href="{% url 'books:edit_book' book.id %}">Редактировать</a></td>
 
             </tr>

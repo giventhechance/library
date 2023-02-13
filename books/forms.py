@@ -20,7 +20,9 @@ class BookModelForm(forms.ModelForm):
             'qty',
         ]
 
+    # qty_available = forms.IntegerField()
+
 
 class BookGiveOut(forms.Form):
-    book = forms.ModelChoiceField(label='Книга', queryset=Book.objects.all())
+    # book = forms.ModelChoiceField(label='Книга', queryset=Book.objects.all())
     reader = forms.ModelChoiceField(label='Читатель', queryset=Reader.objects.all())

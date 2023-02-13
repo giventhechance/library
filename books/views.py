@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from books.forms import BookModelForm, BookGiveOut
 from books.models import Book, Author
+from people.models import Reader
 
 
 def index(request):
@@ -54,7 +55,10 @@ def add_book(request):
     if request.method == 'POST':
         new_book = BookModelForm(request.POST)
         if new_book.is_valid():
-            new_book.save()
+            created_book = new_book.save(commit=False)
+            created_book.qty_available = created_book.qty
+            created_book.save()
+
             return redirect('books:all_books')
 
         else:
@@ -94,15 +98,34 @@ def give_out_book(request, pk):
     giveout_form = BookGiveOut()
 
     if request.method == 'POST':
-        book = request.POST.get('book')
-        reader = request.POST.get('reader')
+        book_id = request.POST.get('book')
+
+        reader_id = request.POST.get('reader')
+        reader = Reader.objects.get(id=reader_id)
+
         print(book, reader)
+
+        print('у читателя - ', reader.books_qty_in_possession)
+        print('всего доступно книжек - ', book.qty_available)
+
+
+        if book.qty_available > 0:
+            reader.books_qty_in_possession += 1
+            book.qty_available -= 1
+            reader.save()
+            book.save()
+            print(reader.books_qty_in_possession)
+        else:
+            return HttpResponse('а соречки книжек няма')
 
     context = {
         'book': book,
         'giveout_form': giveout_form
     }
     return render(request, 'books/book_giveout.html', context)
+
+def take_book_back(request, pk):
+    pass
 
 
 
